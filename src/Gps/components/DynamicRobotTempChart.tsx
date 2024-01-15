@@ -39,7 +39,6 @@ export default function DynamicRobotTempChart() {
       {
         label: "Temperature",
         data: [90, 89, 85, 70, 74, 71, 80, 55, 51, 47, 40, 30, 23, 15, 10],
-
         backgroundColor: "rgba(35,13,92,0.4)",
         borderColor: "rgba(35,13,92,0.4)",
         borderWidth: 2,
@@ -53,7 +52,13 @@ export default function DynamicRobotTempChart() {
         <Title order={5} c="gray.8">
           Robot Temperature
         </Title>
-        <Line data={data} />
+        <Line
+          data={data}
+          options={{
+            maintainAspectRatio: false,
+            responsive: true,
+          }}
+        />
       </Box>
     </>
   );

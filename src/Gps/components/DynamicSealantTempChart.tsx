@@ -52,7 +52,13 @@ export default function DynamicSealantTempChart() {
         <Title order={5} c="gray.8">
           Sealant Temperature
         </Title>
-        <Line data={data} />
+        <Line
+          data={data}
+          options={{
+            maintainAspectRatio: false,
+            responsive: true,
+          }}
+        />
       </Box>
     </>
   );

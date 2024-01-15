@@ -13,7 +13,7 @@ import {
 import classes from "./header.module.scss";
 import Sidebar from "../Sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store/store";
 import { close, open } from "./slice/menuSlice";
 import { IconRobot } from "@tabler/icons-react";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
@@ -43,6 +43,7 @@ export default function Header() {
             opened={opened}
             onClick={() => dispatch(open())}
             hiddenFrom="sm"
+            color="gray.7"
           />
         </Group>
       </header>
@@ -51,7 +52,12 @@ export default function Header() {
         opened={opened}
         onClose={() => dispatch(close())}
         size="md"
-        title={<Title order={4}>Logo</Title>}
+        title={
+          <Flex align="center" c={color}>
+            <IconRobot />
+            <Title order={4}> Robot</Title>
+          </Flex>
+        }
         hiddenFrom="sm"
         zIndex={1000000}
       >

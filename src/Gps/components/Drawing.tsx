@@ -126,7 +126,7 @@ const Drawing = () => {
             toast(
               <div
                 style={{
-                  backgroundColor: "#EA4335",
+                  backgroundColor: "#D24545",
                   padding: "1rem",
                   color: "white",
                   border: "none",

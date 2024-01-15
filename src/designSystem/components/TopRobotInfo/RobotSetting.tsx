@@ -10,13 +10,14 @@ import {
 } from "@mantine/core";
 import { IconSettings } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { RootState } from "../../../../store/store";
 import { close, open } from "./slice/settingModalSlice";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
-export default function Setting() {
+
+export default function RobotSetting() {
   const dispatch = useDispatch();
   const opened = useSelector((state: RootState) => state.settingModal.status);
   const color = usePrimaryColorHex(6);

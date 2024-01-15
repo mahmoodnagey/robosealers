@@ -48,7 +48,6 @@ export default function DynamicDirectionChart() {
       {
         label: "X",
         data: numberXArray.length > 0 ? numberXArray : [0],
-
         backgroundColor: "rgba(75,192,192,0.4)",
         borderColor: "rgba(75,192,192,1)",
         borderWidth: 2,
@@ -57,7 +56,6 @@ export default function DynamicDirectionChart() {
       {
         label: "Y",
         data: numberYArray.length > 0 ? numberYArray : [0],
-
         backgroundColor: "rgba(255,99,132,0.4)",
         borderColor: "rgba(255,99,132,1)",
         borderWidth: 2,

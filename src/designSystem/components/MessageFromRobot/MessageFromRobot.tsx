@@ -24,7 +24,6 @@ export default function MessageFromRobot() {
               variant="light"
               onClick={() => setShowMessage(true)}
               size="xs"
-              color="green"
             >
               Ok
             </Button>

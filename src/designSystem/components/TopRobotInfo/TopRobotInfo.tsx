@@ -2,9 +2,9 @@ import { Badge, Button, Flex, Title } from "@mantine/core";
 import useIsMobile from "../../hooks/use-is-mobile";
 import { useState } from "react";
 import { IconPlayerPause, IconPlayerPlay } from "@tabler/icons-react";
-import Setting from "./Setting";
+import RobotSetting from "./RobotSetting";
 
-export default function RobotSetting() {
+export default function TopRobotInfo() {
   const mobile = useIsMobile();
   const [status, setStatus] = useState<any>("active");
   return (
@@ -68,7 +68,7 @@ export default function RobotSetting() {
               Pause
             </Button>
           )}
-          {status !== "off" && <Setting />}
+          {status !== "off" && <RobotSetting />}
         </Flex>
       </Flex>
     </>

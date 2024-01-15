@@ -1,6 +1,5 @@
 import { Flex } from "@mantine/core";
 import MessageFromRobot from "../designSystem/components/MessageFromRobot";
-import RobotSetting from "../designSystem/components/RobotSetting";
 import useIsMobile from "../designSystem/hooks/use-is-mobile";
 import DynamicBatteryChart from "./components/DynamicBatteryChart";
 import DynamicDirectionChart from "./components/DynamicDirectionChart";
@@ -10,19 +9,20 @@ import DynamicRobotTempChart from "./components/DynamicRobotTempChart";
 import DynamicSealantTempChart from "./components/DynamicSealantTempChart";
 import Drawing from "./components/Drawing";
 import DynamicRobotSpeedChart from "./components/DynamicRobotSpeedChart";
+import TopRobotInfo from "../designSystem/components/TopRobotInfo/TopRobotInfo";
 
 export default function Gps() {
   const mobile = useIsMobile();
   return (
     <>
-      <RobotSetting />
+      <TopRobotInfo />
       <MessageFromRobot />
       <Drawing />
       <Flex
         justify="space-between"
         direction={mobile ? "column" : "row"}
-        gap="md"
-        my="md"
+        gap="2.5rem"
+        mb="2.5rem"
       >
         <DynamicDirectionChart />
         <DynamicRotationChart />
@@ -30,8 +30,8 @@ export default function Gps() {
       <Flex
         justify="space-between"
         direction={mobile ? "column" : "row"}
-        gap="md"
-        my="md"
+        gap="2.5rem"
+        my="2.5rem"
       >
         <DynamicRobotTempChart />
         <DynamicSealantTempChart />
@@ -40,7 +40,7 @@ export default function Gps() {
         justify="space-between"
         direction={mobile ? "column" : "row"}
         gap="3rem"
-        my="md"
+        my="2.5rem"
       >
         <DynamicSealantChart />
         <DynamicBatteryChart />

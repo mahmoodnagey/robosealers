@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import menuReducer from "./designSystem/components/Header/slice/menuSlice";
-import settingModalReducer from "./designSystem/components/RobotSetting/slice/settingModalSlice";
+import menuReducer from "../src/designSystem/components/Header/slice/menuSlice";
+import settingModalReducer from "../src/designSystem/components/TopRobotInfo/slice/settingModalSlice";
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
