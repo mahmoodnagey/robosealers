@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
+import userReducer from "../src/auth/slice/user-slice";
 import menuReducer from "../src/designSystem/components/Header/slice/menuSlice";
 import settingModalReducer from "../src/designSystem/components/TopRobotInfo/slice/settingModalSlice";
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
     settingModal: settingModalReducer,
+    user: userReducer,
   },
 });
 

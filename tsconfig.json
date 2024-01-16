@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "store/store.ts"],
+  "include": ["src", "store/store.ts", "auth/pages"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

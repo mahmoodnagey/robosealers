@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
 import "@mantine/core/styles.css";
+import "./main.css";
 import { RouterProvider } from "react-router-dom";
 import { allRouters } from "./router.tsx";
 import {
@@ -19,19 +20,19 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <DirectionProvider>
         <MantineProvider
           theme={{
-            primaryColor: "light-blue",
+            primaryColor: "cyan",
             colors: {
-              "light-blue": [
-                "#e5faff",
-                "#d0f1ff",
-                "#a0e1fd",
-                "#6ed1fc",
-                "#4bc4fa",
-                "#38bbfa",
-                "#2bb7fb",
-                "#1ca1e1",
-                "#008fc9",
-                "#007cb2",
+              cyanColor: [
+                "#e3feff",
+                "#d2f8fa",
+                "#a8eff2",
+                "#7be5ea",
+                "#58dde4",
+                "#42d8e0",
+                "#31d6de",
+                "#1dbdc6",
+                "#00a9b0",
+                "#00939a",
               ],
             },
           }}

@@ -6,14 +6,14 @@ import { LinksGroup } from "./LinksGroup";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
 
 const mockdata = [
-  { label: "Overview", icon: IconGauge, link: "/" },
+  { label: "Overview", icon: IconGauge, link: "/home" },
   {
     label: "Live Tracking",
     icon: IconView360,
     links: [
       { label: "GPS Track", link: "/gps" },
-      { label: "Camera Track", link: "/" },
-      { label: "2D/3D Mapping Track", link: "/" },
+      { label: "Camera Track", link: "/home" },
+      { label: "2D/3D Mapping Track", link: "/home" },
     ],
   },
 ];
