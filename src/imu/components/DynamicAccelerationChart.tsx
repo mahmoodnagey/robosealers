@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import useIsMobile from "../../design-system/hooks/use-is-mobile";
 
-export default function DynamicRobotTempChart() {
+export default function DynamicAccelerationChart() {
+  const [numberXArray, setNumberXArray] = useState<any>([]);
+  const [numberYArray, setNumberYArray] = useState<any>([]);
   const [current, setCurrent] = useState<any>(moment());
   const mobile = useIsMobile();
   useEffect(() => {
@@ -14,7 +16,14 @@ export default function DynamicRobotTempChart() {
 
       if (countDown === 0) {
         setCurrent(moment());
+        setNumberXArray([]);
+        setNumberYArray([]);
       }
+
+      const randomXNumber = Math.floor(Math.random() * 100) + 1;
+      const randomYNumber = Math.floor(Math.random() * 100) + 1;
+      setNumberXArray((prevArray: any) => [...prevArray, randomXNumber]);
+      setNumberYArray((prevArray: any) => [...prevArray, randomYNumber]);
     }, 2000);
 
     return () => clearInterval(interval);
@@ -37,10 +46,18 @@ export default function DynamicRobotTempChart() {
     labels: timeArray,
     datasets: [
       {
-        label: "Temperature",
-        data: [90, 89, 85, 70, 74, 71, 80, 55, 51, 47, 40, 30, 23, 15, 10],
-        backgroundColor: "rgba(35,13,92,0.4)",
-        borderColor: "rgba(35,13,92,0.4)",
+        label: "X",
+        data: numberXArray.length > 0 ? numberXArray : [0],
+        backgroundColor: "rgba(75,192,192,0.4)",
+        borderColor: "rgba(75,192,192,1)",
+        borderWidth: 2,
+        pointRadius: 0,
+      },
+      {
+        label: "Y",
+        data: numberYArray.length > 0 ? numberYArray : [0],
+        backgroundColor: "rgba(255,99,132,0.4)",
+        borderColor: "rgba(255,99,132,1)",
         borderWidth: 2,
         pointRadius: 0,
       },
@@ -49,8 +66,8 @@ export default function DynamicRobotTempChart() {
   return (
     <>
       <Box w={mobile ? "100%" : "49%"} h={mobile ? "300px" : "400px"}>
-        <Title order={5} c="gray.8">
-          Robot Temperature
+        <Title order={5} c="gray.7">
+          Live Acceleration x , y
         </Title>
         <Line
           data={data}

@@ -2,9 +2,9 @@ import { Box, Title } from "@mantine/core";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
-import useIsMobile from "../../design-system/hooks/use-is-mobile";
+import useIsMobile from "../../../design-system/hooks/use-is-mobile";
 
-export default function DynamicRobotTempChart() {
+export default function DynamicSealantTempChart() {
   const [current, setCurrent] = useState<any>(moment());
   const mobile = useIsMobile();
   useEffect(() => {
@@ -38,9 +38,9 @@ export default function DynamicRobotTempChart() {
     datasets: [
       {
         label: "Temperature",
-        data: [90, 89, 85, 70, 74, 71, 80, 55, 51, 47, 40, 30, 23, 15, 10],
-        backgroundColor: "rgba(35,13,92,0.4)",
-        borderColor: "rgba(35,13,92,0.4)",
+        data: [90, 89, 85, 70, 74, 71, 60, 55, 51, 46, 40, 30, 20, 10],
+        backgroundColor: "rgba(555,96,92,0.9)",
+        borderColor: "rgba(555,96,92,0.9)",
         borderWidth: 2,
         pointRadius: 0,
       },
@@ -48,9 +48,9 @@ export default function DynamicRobotTempChart() {
   };
   return (
     <>
-      <Box w={mobile ? "100%" : "49%"} h={mobile ? "300px" : "400px"}>
-        <Title order={5} c="gray.8">
-          Robot Temperature
+      <Box w={mobile ? "100%" : "49%"} h="300px">
+        <Title order={5} c="gray.7" ta={mobile ? "center" : undefined}>
+          Sealant Temperature
         </Title>
         <Line
           data={data}
