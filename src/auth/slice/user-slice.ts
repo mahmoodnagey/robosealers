@@ -5,7 +5,7 @@ export interface MenuState {
 }
 
 const initialState: MenuState = {
-  status: false,
+  status: JSON.parse(localStorage.getItem("isUser") || "false"),
 };
 
 export const userSlice = createSlice({
@@ -17,10 +17,12 @@ export const userSlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.status = false;
+      localStorage.removeItem("isUser");
+      state.status = JSON.parse(localStorage.getItem("isUser") || "false");
     },
     logIn: (state) => {
-      state.status = true;
+      localStorage.setItem("isUser", JSON.stringify(true));
+      state.status = JSON.parse(localStorage.getItem("isUser") || "false");
     },
     // incrementByAmount: (state, action: PayloadAction<number>) => {
     //   state.value += action.payload

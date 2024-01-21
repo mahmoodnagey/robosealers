@@ -1,12 +1,16 @@
 import LoginHeader from "../components/LoginHeader";
-import useIsMobile from "../../designSystem/hooks/use-is-mobile";
 import robotImg from "../../../shared/images/robot.jpg";
 import { Box, Flex } from "@mantine/core";
+import { Helmet } from "react-helmet";
+import useIsMobile from "../../design-system/hooks/use-is-mobile";
 export default function Login() {
   const mobile = useIsMobile();
 
   return (
     <>
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <Box w={mobile ? "95%" : "88%"} mx="auto">
         <Flex
           justify="space-between"

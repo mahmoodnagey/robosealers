@@ -1,8 +1,8 @@
 import { Flex, Text, Title } from "@mantine/core";
-import { usePrimaryColorHex } from "../../designSystem/hooks/use-primary-color";
-import useIsMobile from "../../designSystem/hooks/use-is-mobile";
 
 import LoginForm from "./LoginForm";
+import useIsMobile from "../../design-system/hooks/use-is-mobile";
+import { usePrimaryColorHex } from "../../design-system/hooks/use-primary-color";
 
 export default function LoginHeader() {
   const color = usePrimaryColorHex();
