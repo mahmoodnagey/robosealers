@@ -1,5 +1,5 @@
 import { ScrollArea } from "@mantine/core";
-import { IconGauge, IconView360 } from "@tabler/icons-react";
+import { IconGauge, IconMessage, IconView360 } from "@tabler/icons-react";
 
 import classes from "./sidebar.module.scss";
 import { LinksGroup } from "./LinksGroup";
@@ -10,16 +10,20 @@ const mockdata = [
     label: "Monitoring",
     icon: IconView360,
     links: [
-      { label: "GPS", link: "/gps" },
-      { label: "Camera Track", link: "/camera" },
-      { label: "Lidar Map", link: "/lidar-map" },
-      { label: "Battery", link: "/battery" },
-      { label: "Motor", link: "/motor" },
-      { label: "IMU", link: "/imu" },
-      { label: "Sealant", link: "/sealant" },
-      { label: "Light System & Blower", link: "/light-system-blower" },
+      { label: "GPS", link: "/monitoring/gps" },
+      { label: "Camera Track", link: "/monitoring/camera" },
+      { label: "Lidar Map", link: "/monitoring/lidar-map" },
+      { label: "Battery", link: "/monitoring/battery" },
+      { label: "Motor", link: "/monitoring/motor" },
+      { label: "IMU", link: "/monitoring/imu" },
+      { label: "Sealant", link: "/monitoring/sealant" },
+      {
+        label: "Light System & Blower",
+        link: "/monitoring/light-system-blower",
+      },
     ],
   },
+  { label: "Raw Data", icon: IconMessage, link: "/raw-data" },
 ];
 
 export default function Sidebar() {

@@ -1,4 +1,4 @@
-import { ActionIcon } from "@mantine/core";
+import { ActionIcon, Paper } from "@mantine/core";
 import "chart.js/auto";
 import { Helmet } from "react-helmet";
 import { Table } from "@mantine/core";
@@ -14,13 +14,13 @@ export default function Overview() {
       id: 1,
       status: <IconX color="red" />,
       name: "Battery",
-      route: "/battery",
+      route: "/monitoring/battery",
     },
     {
       id: 2,
       status: <IconCheck color={color} />,
       name: "Motor",
-      route: "/motor",
+      route: "/monitoring/motor",
     },
   ];
   const rows = elements.map((element) => (
@@ -44,17 +44,19 @@ export default function Overview() {
         <title>Overview</title>
       </Helmet>
       <MainTitle title="Diagnostic Panel" />
-      <Table highlightOnHover>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th ta="center">Id</Table.Th>
-            <Table.Th ta="center">Name</Table.Th>
-            <Table.Th ta="center">Status</Table.Th>
-            <Table.Th ta="center">View</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
+      <Paper shadow="md" radius="md" p="md" mb="xl">
+        <Table highlightOnHover>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th ta="center">Id</Table.Th>
+              <Table.Th ta="center">Name</Table.Th>
+              <Table.Th ta="center">Status</Table.Th>
+              <Table.Th ta="center">View</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Paper>
     </>
   );
 }

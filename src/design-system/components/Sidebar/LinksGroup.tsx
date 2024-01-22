@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Group,
   Box,
@@ -33,6 +33,13 @@ export function LinksGroup({
   const dispatch = useDispatch();
   const route = useLocation();
   const [opened, setOpened] = useState(initiallyOpened || false);
+  useEffect(() => {
+    if (route.pathname.includes(label.toLowerCase())) {
+      setOpened(true);
+    } else {
+      setOpened(false);
+    }
+  }, [route.pathname]);
   const items = (hasLinks ? links : []).map((link) => (
     <Link
       className={

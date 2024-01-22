@@ -6,7 +6,7 @@ import TopRobotInfo from "../design-system/components/TopRobotInfo/TopRobotInfo"
 import MessageFromRobot from "../design-system/components/MessageFromRobot";
 import Drawing from "./components/Drawing";
 import DynamicRobotTempChart from "./components/DynamicRobotTempChart";
-import DynamicBatteryChart from "./components/DynamicBatteryChart";
+import DynamicBatteryChart from "../battery/components/DynamicBatteryChart";
 
 export default function Gps() {
   const mobile = useIsMobile();
@@ -37,7 +37,7 @@ export default function Gps() {
         my="2.5rem"
       >
         {/* <DynamicSealantChart /> */}
-        <DynamicBatteryChart />
+        {/* <DynamicBatteryChart /> */}
         {/* <DynamicRobotSpeedChart /> */}
       </Flex>
     </>
