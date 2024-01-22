@@ -10,6 +10,7 @@ import Sealant from "./sealant/pages/Sealant";
 import LightSystem_Blower from "./light-system-blower/pages/LightSystem_Blower";
 import BaseLayout from "./design-system/BaseLayout/BaseLayout";
 import Gps from "./gps";
+import RawData from "./raw-data/pages/RawData";
 
 export const allRouters = createBrowserRouter([
   {
@@ -26,36 +27,40 @@ export const allRouters = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/gps",
+        path: "/monitoring/gps",
         element: <Gps />,
       },
       {
-        path: "/lidar-map",
+        path: "/monitoring/lidar-map",
         element: <LidarMap />,
       },
       {
-        path: "/battery",
+        path: "/monitoring/battery",
         element: <Battery />,
       },
       {
-        path: "/motor",
+        path: "/monitoring/motor",
         element: <Motor />,
       },
       {
-        path: "/camera",
+        path: "/monitoring/camera",
         element: <Camera />,
       },
       {
-        path: "/imu",
+        path: "/monitoring/imu",
         element: <Imu />,
       },
       {
-        path: "/sealant",
+        path: "/monitoring/sealant",
         element: <Sealant />,
       },
       {
-        path: "/light-system-blower",
+        path: "/monitoring/light-system-blower",
         element: <LightSystem_Blower />,
+      },
+      {
+        path: "/raw-data",
+        element: <RawData />,
       },
     ],
   },
