@@ -6,7 +6,6 @@ import TopRobotInfo from "../design-system/components/TopRobotInfo/TopRobotInfo"
 import MessageFromRobot from "../design-system/components/MessageFromRobot";
 import Drawing from "./components/Drawing";
 import DynamicRobotTempChart from "./components/DynamicRobotTempChart";
-import DynamicBatteryChart from "../battery/components/DynamicBatteryChart";
 
 export default function Gps() {
   const mobile = useIsMobile();
