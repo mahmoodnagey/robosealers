@@ -9,6 +9,7 @@ import {
   Title,
   Flex,
   Text,
+  ActionIcon,
 } from "@mantine/core";
 
 import classes from "./header.module.scss";
@@ -16,11 +17,13 @@ import Sidebar from "../Sidebar";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { close, open } from "./slice/menuSlice";
-import { IconLogout, IconRobot } from "@tabler/icons-react";
+import { IconLogout, IconRobot, IconSettings } from "@tabler/icons-react";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
 import { logOut } from "../../../auth/slice/user-slice";
 import { useNavigate } from "react-router-dom";
 import useIsMobile from "../../hooks/use-is-mobile";
+import { openSettingModal } from "../TopRobotInfo/slice/settingModalSlice";
+import SettingControl from "../SettingControl/SettingControl";
 
 export default function Header() {
   const opened = useSelector((state: RootState) => state.menu.status);
@@ -40,6 +43,9 @@ export default function Header() {
           </Flex>
           {isUser && !mobile && (
             <>
+              <ActionIcon onClick={() => dispatch(openSettingModal())}>
+                <IconSettings />
+              </ActionIcon>
               <Button
                 onClick={() => {
                   dispatch(logOut());
@@ -63,6 +69,7 @@ export default function Header() {
           )}
         </Group>
       </header>
+      <SettingControl />
 
       <Drawer
         opened={opened}

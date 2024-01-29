@@ -12,14 +12,14 @@ export const settingModalSlice = createSlice({
   name: "settingModal",
   initialState,
   reducers: {
-    close: (state) => {
+    closeSettingModal: (state) => {
       // Redux Toolkit allows us to write "mutating" logic in reducers. It
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
       state.status = false;
     },
-    open: (state) => {
+    openSettingModal: (state) => {
       state.status = true;
     },
     // incrementByAmount: (state, action: PayloadAction<number>) => {
@@ -29,6 +29,7 @@ export const settingModalSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { close, open } = settingModalSlice.actions;
+export const { closeSettingModal, openSettingModal } =
+  settingModalSlice.actions;
 
 export default settingModalSlice.reducer;
