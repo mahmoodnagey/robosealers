@@ -11,11 +11,11 @@ import {
 import { IconSettings } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { close, open } from "./slice/settingModalSlice";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
+import { closeSettingModal, openSettingModal } from "./slice/settingModalSlice";
 
 export default function RobotSetting() {
   const dispatch = useDispatch();
@@ -40,14 +40,14 @@ export default function RobotSetting() {
   return (
     <>
       <Tooltip label="Setting" color={color} withArrow>
-        <ActionIcon onClick={() => dispatch(open())}>
+        <ActionIcon onClick={() => dispatch(openSettingModal())}>
           <IconSettings />
         </ActionIcon>
       </Tooltip>
       <Modal
         withCloseButton={false}
         opened={opened}
-        onClose={() => dispatch(close())}
+        onClose={() => dispatch(closeSettingModal())}
       >
         <form onSubmit={formik.handleSubmit}>
           <Flex direction="column" gap=".3rem">
@@ -76,7 +76,7 @@ export default function RobotSetting() {
               variant="light"
               size="xs"
               type="submit"
-              onClick={() => dispatch(close())}
+              onClick={() => dispatch(closeSettingModal())}
             >
               Save
             </Button>
