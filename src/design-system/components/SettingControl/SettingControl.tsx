@@ -4,50 +4,46 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { closeSettingModal } from "../TopRobotInfo/slice/settingModalSlice";
 import "./style.scss";
+import { Box, Button } from "@mantine/core";
+import { usePrimaryColorHex } from "../../hooks/use-primary-color";
+import Control from "./Control";
+
 const SettingControl: React.FC = () => {
   const dispatch = useDispatch();
   const opened = useSelector((state: RootState) => state.settingModal.status);
-  const element: HTMLDivElement | null =
-    document.querySelector(".flexible-modal");
-
-  // Ensure 'element' is not null before calling 'getAttribute'
-  const yourAttributeValue: string | null | undefined =
-    element?.getAttribute("draggable");
-
-  // useEffect(() => {
-  //   console.log(yourAttributeValue);
-  // }, [yourAttributeValue]);
-
-  console.log(yourAttributeValue);
+  const color = usePrimaryColorHex();
 
   return (
-    <ReactDynamicModal
-      initWidth={500}
-      overlay={false}
-      initHeight={400}
-      onRequestClose={() => dispatch(closeSettingModal())}
-      isOpen={opened}
-      data={
-        <div className="body">
-          <p>
-            What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-            printing and typesetting industry.
-          </p>
-        </div>
-      }
-      headerValue={<div>Modal</div>}
-      actions={
-        <div>
-          <button onClick={() => dispatch(closeSettingModal())}>Close</button>
-        </div>
-      }
-      footerText={"You can add some notes here"}
-      style={{
-        header: { color: "#fff", backgroundColor: "blue" },
-        footer: { color: "blue" },
-        actions: { textAlign: "right" },
-      }}
-    />
+    <div className={opened ? "modal__wrapper" : ""}>
+      <ReactDynamicModal
+        initWidth={450}
+        overlay={false}
+        initHeight={400}
+        onRequestClose={() => dispatch(closeSettingModal())}
+        isOpen={opened}
+        isCloseButton={false}
+        disableResize={false}
+        onSizeChange={true}
+        minWidth={200}
+        minHeight={200}
+        data={<Control />}
+        headerValue={<Box tt="capitalize">Setting</Box>}
+        actions={
+          <Button
+            color="red"
+            variant="outline"
+            size="xs"
+            onClick={() => dispatch(closeSettingModal())}
+          >
+            Close
+          </Button>
+        }
+        style={{
+          header: { color: "#fff", backgroundColor: color },
+          actions: { textAlign: "right" },
+        }}
+      />
+    </div>
   );
 };
 
