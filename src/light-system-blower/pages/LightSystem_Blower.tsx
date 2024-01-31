@@ -9,7 +9,7 @@ export default function LightSystem_Blower() {
       <Helmet>
         <title>LightSystem & Blower</title>
       </Helmet>
-      <MainTitle title="LightSystem & Blower" />
+      <MainTitle title="Light System & Blower" />
       <LightSystem />
       <Blower />
     </>
