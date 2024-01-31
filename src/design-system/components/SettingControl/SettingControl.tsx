@@ -1,4 +1,5 @@
 import React from "react";
+// @ts-ignore
 import ReactDynamicModal from "react-draggable-resizable-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
