@@ -2,7 +2,6 @@ import { Flex } from "@mantine/core";
 import { Helmet } from "react-helmet";
 import useIsMobile from "../design-system/hooks/use-is-mobile";
 import MainTitle from "../design-system/components/MainTitle";
-import TopRobotInfo from "../design-system/components/TopRobotInfo/TopRobotInfo";
 import MessageFromRobot from "../design-system/components/MessageFromRobot";
 import Drawing from "./components/Drawing";
 import DynamicRobotTempChart from "./components/DynamicRobotTempChart";
@@ -16,7 +15,6 @@ export default function Gps() {
       </Helmet>
       <MainTitle title="GPS" />
 
-      <TopRobotInfo />
       <MessageFromRobot />
       <Drawing />
 

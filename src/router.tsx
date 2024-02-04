@@ -11,6 +11,9 @@ import LightSystem_Blower from "./light-system-blower/pages/LightSystem_Blower";
 import BaseLayout from "./design-system/BaseLayout/BaseLayout";
 import Gps from "./gps";
 import RawData from "./raw-data/pages/RawData";
+import Distance from "./distance/pages/Distance";
+import RunningHours from "./running-hours/pages/RunningHours";
+import SealantVolume from "./sealant-volume/pages/SealantVolume";
 
 export const allRouters = createBrowserRouter([
   {
@@ -57,6 +60,18 @@ export const allRouters = createBrowserRouter([
       {
         path: "/monitoring/light-system-blower",
         element: <LightSystem_Blower />,
+      },
+      {
+        path: "/statistics/distance",
+        element: <Distance />,
+      },
+      {
+        path: "/statistics/running-hours",
+        element: <RunningHours />,
+      },
+      {
+        path: "/statistics/sealant-volume",
+        element: <SealantVolume />,
       },
       {
         path: "/raw-data",

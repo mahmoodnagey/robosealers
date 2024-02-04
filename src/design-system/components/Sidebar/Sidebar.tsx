@@ -1,5 +1,10 @@
 import { ScrollArea } from "@mantine/core";
-import { IconGauge, IconMessage, IconView360 } from "@tabler/icons-react";
+import {
+  IconChartAreaLine,
+  IconGauge,
+  IconMessage,
+  IconView360,
+} from "@tabler/icons-react";
 
 import classes from "./sidebar.module.scss";
 import { LinksGroup } from "./LinksGroup";
@@ -21,6 +26,15 @@ const mockdata = [
         label: "Light System & Blower",
         link: "/monitoring/light-system-blower",
       },
+    ],
+  },
+  {
+    label: "Statistics",
+    icon: IconChartAreaLine,
+    links: [
+      { label: "Distance", link: "/statistics/distance" },
+      { label: "Running Hours", link: "/statistics/running-hours" },
+      { label: "Sealant Volume", link: "/statistics/sealant-volume" },
     ],
   },
   { label: "Raw Data", icon: IconMessage, link: "/raw-data" },

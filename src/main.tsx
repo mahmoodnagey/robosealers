@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import "./main.css";
 import { RouterProvider } from "react-router-dom";
 import { allRouters } from "./router.tsx";
