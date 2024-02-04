@@ -3,7 +3,7 @@ import React from "react";
 import ReactDynamicModal from "react-draggable-resizable-modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
-import { closeSettingModal } from "../TopRobotInfo/slice/settingModalSlice";
+import { closeSettingModal } from "./slice/settingModalSlice";
 import "./style.scss";
 import { Box, Button } from "@mantine/core";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";

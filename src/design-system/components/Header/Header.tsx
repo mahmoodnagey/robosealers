@@ -22,7 +22,7 @@ import { usePrimaryColorHex } from "../../hooks/use-primary-color";
 import { logOut } from "../../../auth/slice/user-slice";
 import { Link, useNavigate } from "react-router-dom";
 import useIsMobile from "../../hooks/use-is-mobile";
-import { openSettingModal } from "../TopRobotInfo/slice/settingModalSlice";
+import { openSettingModal } from "../SettingControl/slice/settingModalSlice";
 import SettingControl from "../SettingControl/SettingControl";
 
 export default function Header() {
