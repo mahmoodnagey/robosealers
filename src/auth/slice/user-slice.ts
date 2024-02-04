@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface MenuState {
-  status: boolean;
+  status: any;
 }
 
 const initialState: MenuState = {
