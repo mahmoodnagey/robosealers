@@ -14,6 +14,9 @@ import RawData from "./raw-data/pages/RawData";
 import Distance from "./distance/pages/Distance";
 import RunningHours from "./running-hours/pages/RunningHours";
 import SealantVolume from "./sealant-volume/pages/SealantVolume";
+import CracksNumber from "./cracks-number/pages/CracksNumber";
+import CracksVolume from "./cracks-volume/pages/CracksVolume";
+import Chart_Graphs from "./chart-graphs/pages/Chart_Graphs";
 
 export const allRouters = createBrowserRouter([
   {
@@ -72,6 +75,18 @@ export const allRouters = createBrowserRouter([
       {
         path: "/statistics/sealant-volume",
         element: <SealantVolume />,
+      },
+      {
+        path: "/statistics/cracks-number",
+        element: <CracksNumber />,
+      },
+      {
+        path: "/statistics/cracks-volume",
+        element: <CracksVolume />,
+      },
+      {
+        path: "/statistics/chart-graphs",
+        element: <Chart_Graphs />,
       },
       {
         path: "/raw-data",
