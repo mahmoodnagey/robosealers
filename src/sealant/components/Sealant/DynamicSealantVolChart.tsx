@@ -9,7 +9,7 @@ export default function DynamicSealantVolChart() {
     <>
       <Flex direction="column" align="center" w={mobile ? "100%" : "33%"}>
         <Title order={5} c="gray.7">
-          Sealant Weight
+          Sealant Volume
         </Title>
 
         <RingProgress
