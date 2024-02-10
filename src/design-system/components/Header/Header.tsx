@@ -37,12 +37,19 @@ export default function Header() {
     <>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          <Link to="/home">
+          {isUser ? (
+            <Link to="/home">
+              <Flex align="center" c={color}>
+                <IconRobot size={"2rem"} />
+                <Title order={2}>Robosealers</Title>
+              </Flex>
+            </Link>
+          ) : (
             <Flex align="center" c={color}>
               <IconRobot size={"2rem"} />
               <Title order={2}>Robosealers</Title>
             </Flex>
-          </Link>
+          )}
           {isUser && !mobile && (
             <>
               <ActionIcon onClick={() => dispatch(openSettingModal())}>
@@ -77,7 +84,6 @@ export default function Header() {
         </Group>
       </header>
       <SettingControl />
-
       <Drawer
         opened={opened}
         onClose={() => dispatch(close())}
