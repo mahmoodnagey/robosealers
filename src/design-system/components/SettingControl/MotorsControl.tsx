@@ -1,8 +1,9 @@
-import { Box, Button, Flex, Switch, Text, TextInput } from "@mantine/core";
+import { Box, Button, Flex, Text, TextInput } from "@mantine/core";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useState } from "react";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
+import { openModal } from "../ConfirmModal/ConfirmModal";
 export default function MotorsControl() {
   const color = usePrimaryColorHex(6);
   const [speed, setSpeed] = useState(50);
@@ -16,23 +17,16 @@ export default function MotorsControl() {
     onSubmit: (values) => {
       // alert(JSON.stringify(values, null, 2));
       // resetForm();
-
-      setSpeed(values.speed);
+      openModal({
+        text: "Are you sure to save changes",
+        onConfirm: () => {
+          setSpeed(values.speed);
+        },
+      });
     },
   });
   return (
     <Flex direction="column" gap="md">
-      <Switch
-        labelPosition="left"
-        label={
-          <Text c={color} fw="bold">
-            Motor
-          </Text>
-        }
-        size="md"
-        onLabel="Start"
-        offLabel="Stop"
-      />
       <form onSubmit={formik.handleSubmit}>
         <Flex gap="1rem" align="center">
           <label htmlFor="speed" style={{ color: color, fontWeight: "bold" }}>

@@ -11,6 +11,7 @@ import {
 } from "@mantine/core";
 import { Provider } from "react-redux";
 import { store } from "../store/store.ts";
+import { ModalsProvider } from "@mantine/modals";
 
 const router = allRouters;
 
@@ -38,7 +39,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             },
           }}
         >
-          <RouterProvider router={router} />
+          <ModalsProvider>
+            <RouterProvider router={router} />
+          </ModalsProvider>
         </MantineProvider>
       </DirectionProvider>
     </Provider>
