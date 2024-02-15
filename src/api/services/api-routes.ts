@@ -1,5 +1,6 @@
 enum ApiRoutes {
   listOprations = "oprations/list",
+  listAreasOprations = "oprations/listAreas",
   // listServices = "services/list",
   // listProducts = "products/list",
   // listCategories = "categories/list",

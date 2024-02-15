@@ -2,6 +2,7 @@ import { Button, Flex, Select } from "@mantine/core";
 import { DateInput } from "@mantine/dates";
 import { IconFilter } from "@tabler/icons-react";
 import { useFormik } from "formik";
+import { useFetchOperationData } from "../../hooks/use-fetch-operation-filter";
 interface FormValues {
   dateFrom: Date | undefined;
   dateTo: Date | undefined;
@@ -9,6 +10,7 @@ interface FormValues {
 }
 
 export default function AreaTimeFilter({ onFilter }: { onFilter: any }) {
+  const { areas, handleSelectAreaClick } = useFetchOperationData({});
   const formik = useFormik<FormValues>({
     initialValues: {
       dateFrom: undefined,
@@ -75,10 +77,11 @@ export default function AreaTimeFilter({ onFilter }: { onFilter: any }) {
             label="Area"
             name="area"
             placeholder="Pick value"
-            data={["Badr", "Albour", "Elshrouq"]}
+            data={areas}
             onChange={(value) => formik.setFieldValue("area", value)}
             onBlur={formik.handleBlur}
             value={formik.values.area}
+            onClick={handleSelectAreaClick}
           />
           <Button
             type="submit"

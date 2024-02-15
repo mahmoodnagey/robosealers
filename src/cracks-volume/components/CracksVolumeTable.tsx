@@ -8,7 +8,18 @@ export default function CracksVolumeTable({
 }) {
   const rows = elements?.map((element) => (
     <Table.Tr key={element._id} ta="center">
-      <Table.Td>{element.endDate}</Table.Td>
+      <Table.Td>
+        {new Date(element.startDate).toLocaleString().slice(0, 9)}
+      </Table.Td>
+      <Table.Td>
+        {new Date(element.startDate).toLocaleString().slice(10)}
+      </Table.Td>
+      <Table.Td>
+        {new Date(element.endDate).toLocaleString().slice(0, 9)}
+      </Table.Td>
+      <Table.Td>
+        {new Date(element.endDate).toLocaleString().slice(10)}
+      </Table.Td>
       <Table.Td>{element.area}</Table.Td>
       <Table.Td>{element.cracksVolume} L</Table.Td>
     </Table.Tr>
@@ -24,7 +35,10 @@ export default function CracksVolumeTable({
           <Table highlightOnHover>
             <Table.Thead>
               <Table.Tr>
-                <Table.Th ta="center">Date</Table.Th>
+                <Table.Th ta="center">Start Date</Table.Th>
+                <Table.Th ta="center">Start Time</Table.Th>
+                <Table.Th ta="center">End Date</Table.Th>
+                <Table.Th ta="center">End Time</Table.Th>
                 <Table.Th ta="center">Area</Table.Th>
                 <Table.Th ta="center">Cracks Volume</Table.Th>
               </Table.Tr>
