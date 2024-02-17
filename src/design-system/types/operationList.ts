@@ -3,6 +3,7 @@ export interface RobotData {
   robot: string;
   area: string;
   endDate: string;
+  startDate: string;
   distance: number;
   runningHours: number;
   sealantVolume: number;
