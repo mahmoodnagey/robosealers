@@ -17,6 +17,7 @@ import SealantVolume from "./sealant-volume/pages/SealantVolume";
 import CracksNumber from "./cracks-number/pages/CracksNumber";
 import CracksVolume from "./cracks-volume/pages/CracksVolume";
 import Chart_Graphs from "./chart-graphs/pages/Chart_Graphs";
+import AllOperations from "./all-operations/pages/AllOperations";
 
 export const allRouters = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ export const allRouters = createBrowserRouter([
       {
         path: "/monitoring/light-system-blower",
         element: <LightSystem_Blower />,
+      },
+      {
+        path: "/statistics/all-operations",
+        element: <AllOperations />,
       },
       {
         path: "/statistics/distance",

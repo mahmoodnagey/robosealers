@@ -1,10 +1,10 @@
 import { Paper, Table, Title } from "@mantine/core";
 import { RobotData } from "../../design-system/types/operationList";
 
-export default function SealantVolumeTable({
+export default function AllOperationsTable({
   elements,
 }: {
-  elements?: RobotData[];
+  elements: RobotData[];
 }) {
   const rows = elements?.map((element) => (
     <Table.Tr key={element._id} ta="center">
@@ -21,7 +21,11 @@ export default function SealantVolumeTable({
         {new Date(element.endDate).toLocaleString().slice(10)}
       </Table.Td>
       <Table.Td>{element.area}</Table.Td>
+      <Table.Td>{element.distance} Km</Table.Td>
+      <Table.Td>{element.runningHours} Hours</Table.Td>
       <Table.Td>{element.sealantVolume} L</Table.Td>
+      <Table.Td>{element.cracksVolume} L</Table.Td>
+      <Table.Td>{element.cracksNumber} </Table.Td>
     </Table.Tr>
   ));
   return (
@@ -40,7 +44,11 @@ export default function SealantVolumeTable({
                 <Table.Th ta="center">End Date</Table.Th>
                 <Table.Th ta="center">End Time</Table.Th>
                 <Table.Th ta="center">Area</Table.Th>
-                <Table.Th ta="center">Volume</Table.Th>
+                <Table.Th ta="center">Distance</Table.Th>
+                <Table.Th ta="center">Hours</Table.Th>
+                <Table.Th ta="center">Sealant Volume</Table.Th>
+                <Table.Th ta="center">Cracks Volume</Table.Th>
+                <Table.Th ta="center">Cracks Number</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>

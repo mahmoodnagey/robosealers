@@ -32,7 +32,7 @@ export default function CracksNumberTable({
             No Data Found
           </Title>
         ) : (
-          <Table highlightOnHover>
+          <Table highlightOnHover verticalSpacing="md">
             <Table.Thead>
               <Table.Tr>
                 <Table.Th ta="center">Start Date</Table.Th>
