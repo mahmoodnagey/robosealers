@@ -32,6 +32,7 @@ const mockdata = [
     label: "Statistics",
     icon: IconChartAreaLine,
     links: [
+      { label: "All Operations", link: "/statistics/all-operations" },
       { label: "Distance", link: "/statistics/distance" },
       { label: "Running Hours", link: "/statistics/running-hours" },
       { label: "Sealant Volume", link: "/statistics/sealant-volume" },
