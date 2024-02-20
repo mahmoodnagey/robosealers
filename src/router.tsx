@@ -18,6 +18,7 @@ import CracksNumber from "./cracks-number/pages/CracksNumber";
 import CracksVolume from "./cracks-volume/pages/CracksVolume";
 import Chart_Graphs from "./chart-graphs/pages/Chart_Graphs";
 import AllOperations from "./all-operations/pages/AllOperations";
+import Roles from "./roles/pages/Roles";
 
 export const allRouters = createBrowserRouter([
   {
@@ -92,6 +93,10 @@ export const allRouters = createBrowserRouter([
       {
         path: "/statistics/chart-graphs",
         element: <Chart_Graphs />,
+      },
+      {
+        path: "/roles",
+        element: <Roles />,
       },
       {
         path: "/raw-data",
