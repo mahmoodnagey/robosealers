@@ -1,8 +1,9 @@
 import axios from "axios";
+import { store } from "../../../store/store";
 // import { store } from "../../redux/store";
 // import i18n from "../../i18n";
 
-const BASE_END_POINT = "http://localhost:4000/api/v1/user/";
+const BASE_END_POINT = "http://localhost:4000/api/v1/";
 
 const baseURL = BASE_END_POINT;
 const Axios = axios.create({ baseURL });
@@ -10,31 +11,31 @@ Axios.defaults.baseURL = baseURL;
 Axios.defaults.headers["x-app-token"] = "Robosealers-Team";
 // Axios.defaults.headers['accept-language'] = i18n.language
 
-// Axios.interceptors.request.use(async (req: any) => {
-//   const token = store.getState().auth?.token;
+Axios.interceptors.request.use(async (req: any) => {
+  const token = store.getState().auth?.token;
 
-//   //don't check the token in login or register
-//   if ((req.url === 'login') || (req.url === 'register')) {
-//     return req;
-//   }
+  //don't check the token in login or register
+  if (req.url === "login" || req.url === "register") {
+    return req;
+  }
 
-//   if (!req?.url.includes('/list')) {
-//     const updatedParams = {...req?.params};
-//     delete updatedParams?.page;
-//     delete updatedParams?.limit;
-//     delete updatedParams?.pageNo;
-//     req.params = updatedParams;
-//   }
+  if (!req?.url.includes("/list")) {
+    const updatedParams = { ...req?.params };
+    delete updatedParams?.page;
+    delete updatedParams?.limit;
+    delete updatedParams?.pageNo;
+    req.params = updatedParams;
+  }
 
-//   // todo : move inside interceptor
-//   req.headers.Authorization = `Bearer ${token}`;
+  // todo : move inside interceptor
+  req.headers.Authorization = `Bearer ${token}`;
 
-//   ///to handle form data
-//   if (req.data instanceof FormData) {
-//     req.headers['Content-Type'] = 'multipart/form-data';
-//   }
-//   return req;
-// });
+  ///to handle form data
+  if (req.data instanceof FormData) {
+    req.headers["Content-Type"] = "multipart/form-data";
+  }
+  return req;
+});
 
 // Axios.interceptors.response.use(
 //   res => { console.log({res});return res;},

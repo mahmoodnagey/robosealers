@@ -8,19 +8,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 export default function BaseLayout() {
   const mobile = useIsMobile();
-  const isUser = useSelector((state: RootState) => state.user.status);
+  const isUser = useSelector((state: RootState) => state.auth.token);
 
   return (
     <>
       <Flex direction="column" mih="100vh">
         <Header />
         <Flex pos="relative" justify="space-between">
-          {!mobile && isUser === true && (
+          {!mobile && isUser && (
             <Box w="22%">
               <Sidebar />
             </Box>
           )}
-          <Box w={mobile || isUser === false ? "100%" : "79%"} p="md">
+          <Box w={mobile || !isUser ? "100%" : "79%"} p="md">
             <Outlet />
           </Box>
         </Flex>

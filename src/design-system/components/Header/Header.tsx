@@ -19,15 +19,15 @@ import { RootState } from "../../../../store/store";
 import { close, open } from "./slice/menuSlice";
 import { IconLogout, IconRobot, IconSettings } from "@tabler/icons-react";
 import { usePrimaryColorHex } from "../../hooks/use-primary-color";
-import { logOut } from "../../../auth/slice/user-slice";
 import { Link, useNavigate } from "react-router-dom";
 import useIsMobile from "../../hooks/use-is-mobile";
 import { openSettingModal } from "../SettingControl/slice/settingModalSlice";
 import SettingControl from "../SettingControl/SettingControl";
+import { logout } from "../../../auth/slice/authSlice";
 
 export default function Header() {
   const opened = useSelector((state: RootState) => state.menu.status);
-  const isUser = useSelector((state: RootState) => state.user.status);
+  const isUser = useSelector((state: RootState) => state.auth.token);
   const dispatch = useDispatch();
   const color = usePrimaryColorHex();
   const navigate = useNavigate();
@@ -57,7 +57,8 @@ export default function Header() {
               </ActionIcon>
               <Button
                 onClick={() => {
-                  dispatch(logOut());
+                  dispatch(logout());
+
                   navigate("/");
                 }}
               >
@@ -112,7 +113,7 @@ export default function Header() {
             <Button
               ml="sm"
               onClick={() => {
-                dispatch(logOut());
+                dispatch(logout());
                 dispatch(close());
 
                 navigate("/");

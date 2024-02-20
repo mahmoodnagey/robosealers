@@ -1,6 +1,16 @@
 enum ApiRoutes {
-  listOprations = "oprations/list",
-  listAreasOprations = "oprations/listAreas",
+  // user api
+  listOprations = "user/oprations/list",
+  listAreasOprations = "user/oprations/listAreas",
+
+  // admin api
+  login = "admin/login",
+  listRoles = "admin/roles/list",
+  createRoles = "admin/roles/create",
+  removeRoles = "admin/roles/remove",
+  listAdminPermissions = "admin/permissions/admin/list",
+  listUserPermissions = "admin/permissions/user/list",
+
   // listServices = "services/list",
   // listProducts = "products/list",
   // listCategories = "categories/list",

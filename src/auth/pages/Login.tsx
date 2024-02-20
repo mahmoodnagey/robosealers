@@ -11,7 +11,7 @@ export default function Login() {
       <Helmet>
         <title>Login</title>
       </Helmet>
-      <Box w={mobile ? "95%" : "88%"} mx="auto">
+      <Box mx="auto" w={mobile ? "95%" : "88%"}>
         <Flex
           justify="space-between"
           direction={mobile ? "column" : "row"}

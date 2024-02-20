@@ -1,5 +1,6 @@
 import { ScrollArea } from "@mantine/core";
 import {
+  IconAdjustments,
   IconChartAreaLine,
   IconGauge,
   IconMessage,
@@ -42,6 +43,7 @@ const mockdata = [
     ],
   },
   { label: "Raw Data", icon: IconMessage, link: "/raw-data" },
+  { label: "Roles", icon: IconAdjustments, link: "/roles" },
 ];
 
 export default function Sidebar() {
