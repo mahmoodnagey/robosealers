@@ -21,20 +21,29 @@ const initialState: RolesListState = {
 
 // Define the async thunk for fetching the roles list
 
-export const fetchRolesList = createAsyncThunk<RoleType[]>(
+export const fetchRolesList = createAsyncThunk<RoleType[], string | undefined>(
   "rolesList/fetchRolesList",
-  async (_, { rejectWithValue }) => {
+  async (type, { rejectWithValue }) => {
     try {
+      let params = {};
+      if (type) {
+        params = { type: type };
+      }
+      if (type == "All") {
+        params = {};
+      }
+
       const response = await GetService({
         route: ApiRoutes.listRoles,
+        params,
       });
       return response.data.result;
     } catch (error: any) {
       return rejectWithValue(error.message);
+      console.log(type);
     }
   }
 );
-
 // Define the async thunk for deleting a role by ID
 export const deleteRoleById = createAsyncThunk<any, string>(
   "rolesList/deleteRoleById",
@@ -81,6 +90,15 @@ const rolesListSlice = createSlice({
     addRole(state, action: PayloadAction<RoleType>) {
       state.roles.push(action.payload);
     },
+    editRole(state, action: PayloadAction<RoleType>) {
+      const updatedRole = action.payload;
+      const index = state.roles.findIndex(
+        (role) => role._id === updatedRole._id
+      );
+      if (index !== -1) {
+        state.roles[index] = updatedRole;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -112,7 +130,7 @@ const rolesListSlice = createSlice({
 });
 
 // Export actions and reducer
-export const { addRole } = rolesListSlice.actions;
+export const { addRole, editRole } = rolesListSlice.actions;
 export default rolesListSlice.reducer;
 
 // Selector function to access the roles list from the state
