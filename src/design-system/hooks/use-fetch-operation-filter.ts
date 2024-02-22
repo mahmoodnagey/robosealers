@@ -11,7 +11,7 @@ export function useFetchOperationData({ totalField }: { totalField?: string }) {
   const fetchData = (params?: any) => {
     setLoading(true);
     GetService({
-      route: ApiRoutes.listOprations,
+      route: ApiRoutes.listAdminOperations,
       params: { ...params, sortByDate: "startDate", sort: -1 },
     })
       .then((res) => {
@@ -42,7 +42,7 @@ export function useFetchOperationData({ totalField }: { totalField?: string }) {
 
   const handleSelectAreaClick = () => {
     GetService({
-      route: ApiRoutes.listAreasOprations,
+      route: ApiRoutes.listAdminAreasOperations,
     }).then((res) => {
       setAreas(res.data.result);
     });

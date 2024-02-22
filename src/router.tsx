@@ -19,6 +19,7 @@ import CracksVolume from "./cracks-volume/pages/CracksVolume";
 import Chart_Graphs from "./chart-graphs/pages/Chart_Graphs";
 import AllOperations from "./all-operations/pages/AllOperations";
 import Roles from "./roles/pages/Roles";
+import Admin from "./admin/pages/Admin";
 
 export const allRouters = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ export const allRouters = createBrowserRouter([
       {
         path: "/roles",
         element: <Roles />,
+      },
+      {
+        path: "/admin",
+        element: <Admin />,
       },
       {
         path: "/raw-data",
