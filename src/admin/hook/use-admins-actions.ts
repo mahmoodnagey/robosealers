@@ -5,7 +5,7 @@ import { openModal } from "../../design-system/components/ConfirmModal/ConfirmMo
 export const useAdminsActions = () => {
   const dispatch: any = useDispatch();
 
-  const removeRole = (roleId: string) => {
+  const removeAdmin = (roleId: string) => {
     openModal({
       text: "Are you sure to remove this admin?",
       onConfirm: () => {
@@ -13,5 +13,5 @@ export const useAdminsActions = () => {
       },
     });
   };
-  return { removeRole };
+  return { removeAdmin };
 };

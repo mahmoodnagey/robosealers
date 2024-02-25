@@ -20,12 +20,14 @@ import Chart_Graphs from "./chart-graphs/pages/Chart_Graphs";
 import AllOperations from "./all-operations/pages/AllOperations";
 import Roles from "./roles/pages/Roles";
 import Admin from "./admin/pages/Admin";
+import WithPermission from "./design-system/components/PermissionsMiddleware/WithPermission";
 
 export const allRouters = createBrowserRouter([
   {
     path: "/",
     element: <BaseLayout />,
     // errorElement: <ErrorPage />,
+
     children: [
       {
         index: true,
@@ -69,39 +71,76 @@ export const allRouters = createBrowserRouter([
       },
       {
         path: "/statistics/all-operations",
-        element: <AllOperations />,
+        element: (
+          <WithPermission
+            component={AllOperations}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/distance",
-        element: <Distance />,
+        element: (
+          <WithPermission
+            component={Distance}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/running-hours",
-        element: <RunningHours />,
+        element: (
+          <WithPermission
+            component={RunningHours}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/sealant-volume",
-        element: <SealantVolume />,
+        element: (
+          <WithPermission
+            component={SealantVolume}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/cracks-number",
-        element: <CracksNumber />,
+        element: (
+          <WithPermission
+            component={CracksNumber}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/cracks-volume",
-        element: <CracksVolume />,
+        element: (
+          <WithPermission
+            component={CracksVolume}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/statistics/chart-graphs",
-        element: <Chart_Graphs />,
+        element: (
+          <WithPermission
+            component={Chart_Graphs}
+            permission="/admin/operations/list"
+          />
+        ),
       },
       {
         path: "/roles",
-        element: <Roles />,
+        element: (
+          <WithPermission component={Roles} permission="/admin/roles/list" />
+        ),
       },
       {
         path: "/admin",
-        element: <Admin />,
+        element: <WithPermission component={Admin} permission="/admin/list" />,
       },
       {
         path: "/raw-data",

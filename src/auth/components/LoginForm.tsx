@@ -41,6 +41,8 @@ export default function LoginForm() {
                 token: res?.data.token,
                 authInfo: res?.data.result,
                 authData: jwtDecode(res?.data.token),
+                permissions: res?.data.result.permission?.permissions,
+                role: res?.data.result.role,
               })
             );
           }

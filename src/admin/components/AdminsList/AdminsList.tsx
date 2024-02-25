@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActionIcon, Flex, Loader, Paper, Table, Title } from "@mantine/core";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { Flex, Loader, Paper, Table, Title } from "@mantine/core";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { fetchAdminsList, selectAdminsList } from "../../slice/adminsListSlice";
@@ -9,15 +8,18 @@ import EditAdminModal from "./EditAdminModal";
 import { openEditAdminModal } from "../../slice/edit-admin-modal-slice";
 import { GetService } from "../../../api/services/requests-service";
 import ApiRoutes from "../../../api/services/api-routes";
+import TableActions from "../../../design-system/components/TableActions";
 
 export default function AdminsList() {
   const dispatch: any = useDispatch();
   const admins = useSelector(selectAdminsList);
+  const userRole = useSelector((state: RootState) => state.auth.role);
   const [admin, setAdmin] = useState<any>();
-  console.log(admins);
-
+  const userPermissions = useSelector(
+    (state: RootState) => state.auth.permissions
+  );
   const loading = useSelector((state: RootState) => state.adminList.loading);
-  const { removeRole } = useAdminsActions();
+  const { removeAdmin } = useAdminsActions();
 
   const openedEditAdminModal = useSelector(
     (state: RootState) => state.editAdminModal.editAdmin
@@ -39,6 +41,16 @@ export default function AdminsList() {
     dispatch(fetchAdminsList());
   }, [dispatch]);
 
+  const onDelete = (id: string) => {
+    removeAdmin(id);
+  };
+
+  const onEdit = (id: string) => {
+    getAdmin(id);
+    dispatch(openEditAdminModal());
+  };
+  console.log(userPermissions);
+
   const rows = admins.admins?.map((admin) => (
     <Table.Tr key={admin._id} ta="center">
       <Table.Td>{admin.name}</Table.Td>
@@ -53,22 +65,18 @@ export default function AdminsList() {
             ""
           ) : (
             <>
-              <ActionIcon
-                variant="light"
-                onClick={() => {
-                  getAdmin(admin._id);
-                  dispatch(openEditAdminModal());
-                }}
-              >
-                <IconEdit size="1rem" />
-              </ActionIcon>
-              <ActionIcon
-                color="red"
-                variant="light"
-                onClick={() => removeRole(admin._id)}
-              >
-                <IconTrash size="1rem" />
-              </ActionIcon>
+              <TableActions
+                edit={
+                  userPermissions.includes("/admin/update") ||
+                  userRole === "superAdmin"
+                }
+                delete={
+                  userPermissions.includes("/admin/remove") ||
+                  userRole === "superAdmin"
+                }
+                onDelete={() => onDelete(admin._id)}
+                onEdit={() => onEdit(admin._id)}
+              />
             </>
           )}
         </Flex>
@@ -87,7 +95,7 @@ export default function AdminsList() {
           <Paper shadow="md" radius="md" p="md" mb="xl">
             {admins.admins.length === 0 ? (
               <Title c="gray.7" ta="center" order={4}>
-                No Roles Found
+                No Admins Found
               </Title>
             ) : (
               <Table highlightOnHover>
