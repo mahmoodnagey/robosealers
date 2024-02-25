@@ -47,6 +47,7 @@ export default function AddAdminRoles() {
         result[key].push(path);
       }
     });
+
     PostService({
       route: ApiRoutes.createRoles,
       body: {

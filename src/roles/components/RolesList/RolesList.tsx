@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import {
-  ActionIcon,
   Button,
   Flex,
   Loader,
@@ -9,7 +8,6 @@ import {
   Table,
   Title,
 } from "@mantine/core";
-import { IconEdit, IconEye, IconTrash } from "@tabler/icons-react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { fetchRolesList, selectRolesList } from "../../slice/rolesListSlice";
@@ -21,14 +19,19 @@ import { openShowRoleModal } from "../../slice/show-role-modal-slice";
 import { RoleType } from "../../types";
 import EditRole from "./EditRole";
 import { openEditRoleModal } from "../../slice/edit-role-modal-slice";
+import TableActions from "../../../design-system/components/TableActions";
 
 export default function RolesList() {
   const dispatch: any = useDispatch();
   const roles = useSelector(selectRolesList);
   const loading = useSelector((state: RootState) => state.rolesList.loading);
   const { removeRole } = useRoleActions();
+  const userRole = useSelector((state: RootState) => state.auth.role);
   const [role, setRole] = useState<RoleType>();
   const [typeValue, setTypeValue] = useState<any>("");
+  const userPermissions = useSelector(
+    (state: RootState) => state.auth.permissions
+  );
   const opened = useSelector(
     (state: RootState) => state.showRoleModal.showRole
   );
@@ -52,39 +55,40 @@ export default function RolesList() {
     });
   };
 
+  const onDelete = (id: string) => {
+    removeRole(id);
+  };
+  const onView = (id: string) => {
+    getRole(id);
+    dispatch(openShowRoleModal());
+  };
+  const onEdit = (id: string) => {
+    getRole(id);
+    dispatch(openEditRoleModal());
+  };
+
   const rows = roles?.map((role) => (
     <Table.Tr key={role._id} ta="center">
       <Table.Td>{role.name}</Table.Td>
       <Table.Td>{role.type}</Table.Td>
       <Table.Td ta="center">
-        <Flex align="center" gap="md" justify="center">
-          <ActionIcon
-            color="green"
-            variant="light"
-            onClick={() => {
-              getRole(role._id);
-              dispatch(openShowRoleModal());
-            }}
-          >
-            <IconEye size="1rem" />
-          </ActionIcon>
-          <ActionIcon
-            variant="light"
-            onClick={() => {
-              getRole(role._id);
-              dispatch(openEditRoleModal());
-            }}
-          >
-            <IconEdit size="1rem" />
-          </ActionIcon>
-          <ActionIcon
-            color="red"
-            variant="light"
-            onClick={() => removeRole(role._id)}
-          >
-            <IconTrash size="1rem" />
-          </ActionIcon>
-        </Flex>
+        <TableActions
+          edit={
+            userPermissions.includes("/admin/roles/update") ||
+            userRole === "superAdmin"
+          }
+          view={
+            userPermissions.includes("/admin/roles/get") ||
+            userRole === "superAdmin"
+          }
+          delete={
+            userPermissions.includes("/admin/roles/remove") ||
+            userRole === "superAdmin"
+          }
+          onDelete={() => onDelete(role._id)}
+          onEdit={() => onEdit(role._id)}
+          onView={() => onView(role._id)}
+        />
       </Table.Td>
     </Table.Tr>
   ));

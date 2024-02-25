@@ -42,10 +42,21 @@ const mockdata = [
       { label: "Cracks Volume", link: "/statistics/cracks-volume" },
       { label: "Chart & Graphs", link: "/statistics/chart-graphs" },
     ],
+    permission: "/admin/operations/list",
   },
   { label: "Raw Data", icon: IconMessage, link: "/raw-data" },
-  { label: "Roles", icon: IconAdjustments, link: "/roles" },
-  { label: "Admin", icon: IconAccessible, link: "/admin" },
+  {
+    label: "Roles",
+    icon: IconAdjustments,
+    link: "/roles",
+    permission: "/admin/roles/list",
+  },
+  {
+    label: "Admin",
+    icon: IconAccessible,
+    link: "/admin",
+    permission: "/admin/list",
+  },
 ];
 
 export default function Sidebar() {
