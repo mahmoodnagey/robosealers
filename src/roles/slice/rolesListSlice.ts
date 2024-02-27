@@ -40,7 +40,6 @@ export const fetchRolesList = createAsyncThunk<RoleType[], string | undefined>(
       return response.data.result;
     } catch (error: any) {
       return rejectWithValue(error.message);
-      console.log(type);
     }
   }
 );

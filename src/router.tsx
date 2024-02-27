@@ -21,6 +21,9 @@ import AllOperations from "./all-operations/pages/AllOperations";
 import Roles from "./roles/pages/Roles";
 import Admin from "./admin/pages/Admin";
 import WithPermission from "./design-system/components/PermissionsMiddleware/WithPermission";
+import Organization from "./orgnization/pages/Organization";
+import Users from "./users/pages/Users";
+import Robots from "./robots/pages/Robots";
 
 export const allRouters = createBrowserRouter([
   {
@@ -141,6 +144,27 @@ export const allRouters = createBrowserRouter([
       {
         path: "/admin",
         element: <WithPermission component={Admin} permission="/admin/list" />,
+      },
+      {
+        path: "/organization",
+        element: (
+          <WithPermission
+            component={Organization}
+            permission="/admin/orgs/list"
+          />
+        ),
+      },
+      {
+        path: "/users",
+        element: (
+          <WithPermission component={Users} permission="/admin/users/list" />
+        ),
+      },
+      {
+        path: "/robots",
+        element: (
+          <WithPermission component={Robots} permission="/admin/robots/list" />
+        ),
       },
       {
         path: "/raw-data",

@@ -2,14 +2,17 @@ import { ScrollArea } from "@mantine/core";
 import {
   IconAccessible,
   IconAdjustments,
+  IconBuilding,
   IconChartAreaLine,
   IconGauge,
   IconMessage,
+  IconUsers,
   IconView360,
 } from "@tabler/icons-react";
 
 import classes from "./sidebar.module.scss";
 import { LinksGroup } from "./LinksGroup";
+import { IconRobot } from "@tabler/icons-react";
 
 const mockdata = [
   { label: "Overview", icon: IconGauge, link: "/home" },
@@ -56,6 +59,24 @@ const mockdata = [
     icon: IconAccessible,
     link: "/admin",
     permission: "/admin/list",
+  },
+  {
+    label: "Organization",
+    icon: IconBuilding,
+    link: "/organization",
+    permission: "/admin/orgs/list",
+  },
+  {
+    label: "Users",
+    icon: IconUsers,
+    link: "/users",
+    permission: "/admin/users/list",
+  },
+  {
+    label: "Robots",
+    icon: IconRobot,
+    link: "/robots",
+    permission: "/admin/robots/list",
   },
 ];
 

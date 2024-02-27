@@ -15,7 +15,10 @@ import { useRoleActions } from "../../hook/use-roles-actions";
 import { GetService } from "../../../api/services/requests-service";
 import ApiRoutes from "../../../api/services/api-routes";
 import ShowRole from "./ShowRole";
-import { openShowRoleModal } from "../../slice/show-role-modal-slice";
+import {
+  closeShowRoleModal,
+  openShowRoleModal,
+} from "../../slice/show-role-modal-slice";
 import { RoleType } from "../../types";
 import EditRole from "./EditRole";
 import { openEditRoleModal } from "../../slice/edit-role-modal-slice";
@@ -137,7 +140,13 @@ export default function RolesList() {
         </>
       )}
 
-      {opened && <ShowRole role={role?.permissions} />}
+      {opened && (
+        <ShowRole
+          opened={opened}
+          onClose={closeShowRoleModal}
+          role={role?.permissions}
+        />
+      )}
       {editRoleOpened && role && <EditRole role={role} />}
     </>
   );

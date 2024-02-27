@@ -176,26 +176,28 @@ export default function EditAdminModal({ admin }: { admin: any }) {
                     onBlur={formik.handleBlur}
                     value={formik.values.email}
                   />
-
-                  <Select
-                    id="permission"
-                    clearable
-                    label="Role"
-                    name="permission"
-                    placeholder={formik.values.permission.name}
-                    data={roles.map((role: Role) => role.name)}
-                    onChange={(value) => {
-                      const selectedRole = roles.find(
-                        (role: Role) => role.name === value
-                      );
-                      formik.setFieldValue(
-                        "permission",
-                        selectedRole ? selectedRole : { _id: null, name: "" }
-                      );
-                    }}
-                    defaultValue={formik.values.permission.name}
-                    onClick={handleClickPermission}
-                  />
+                  {formik.values.permission.name && (
+                    <Select
+                      id="permission"
+                      clearable
+                      label="Role"
+                      name="permission"
+                      placeholder="Pick Role"
+                      data={roles.map((role: Role) => role.name)}
+                      onChange={(value) => {
+                        const selectedRole = roles.find(
+                          (role: Role) => role.name === value
+                        );
+                        formik.setFieldValue(
+                          "permission",
+                          selectedRole ? selectedRole : { _id: null, name: "" }
+                        );
+                      }}
+                      defaultSearchValue={formik.values.permission.name}
+                      defaultValue={formik.values.permission.name}
+                      onClick={handleClickPermission}
+                    />
+                  )}
                   <Button type="submit" mt="1.5rem" variant="light">
                     Save
                   </Button>

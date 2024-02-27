@@ -47,6 +47,8 @@ export default function AddUserRoles() {
         result[key].push(path);
       }
     });
+    console.log(result);
+
     PostService({
       route: ApiRoutes.createRoles,
       body: {
@@ -103,6 +105,7 @@ export default function AddUserRoles() {
       setUserPermissionList(res.data.result);
     });
   }, []);
+  console.log(userPermissionList);
 
   return (
     <>

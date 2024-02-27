@@ -49,7 +49,6 @@ export default function AdminsList() {
     getAdmin(id);
     dispatch(openEditAdminModal());
   };
-  console.log(userPermissions);
 
   const rows = admins.admins?.map((admin) => (
     <Table.Tr key={admin._id} ta="center">
