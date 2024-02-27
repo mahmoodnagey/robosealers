@@ -8,16 +8,19 @@ import {
   Paper,
   Title,
 } from "@mantine/core";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../store/store";
-import { closeShowRoleModal } from "../../slice/show-role-modal-slice";
+import { useDispatch } from "react-redux";
 import { usePrimaryColorHex } from "../../../design-system/hooks/use-primary-color";
 import { IconX } from "@tabler/icons-react";
 
-export default function ShowRole({ role }: { role?: any }) {
-  const opened = useSelector(
-    (state: RootState) => state.showRoleModal.showRole
-  );
+export default function ShowRole({
+  role,
+  opened,
+  onClose,
+}: {
+  role?: any;
+  opened: boolean;
+  onClose: any;
+}) {
   const dispatch = useDispatch();
   const color = usePrimaryColorHex();
 
@@ -27,7 +30,7 @@ export default function ShowRole({ role }: { role?: any }) {
         size="xl"
         opened={opened}
         withCloseButton={false}
-        onClose={() => dispatch(closeShowRoleModal())}
+        onClose={() => dispatch(onClose())}
       >
         {role ? (
           <>
@@ -36,7 +39,7 @@ export default function ShowRole({ role }: { role?: any }) {
                 variant="light"
                 color="red"
                 size="sm"
-                onClick={() => dispatch(closeShowRoleModal())}
+                onClick={() => dispatch(onClose())}
               >
                 <IconX />
               </ActionIcon>

@@ -1,5 +1,8 @@
 import axios from "axios";
 import { store } from "../../../store/store";
+import { logout } from "../../auth/slice/authSlice";
+import { Navigate } from "react-router-dom";
+
 // import { store } from "../../redux/store";
 // import i18n from "../../i18n";
 
@@ -19,13 +22,13 @@ Axios.interceptors.request.use(async (req: any) => {
     return req;
   }
 
-  if (!req?.url.includes("/list")) {
-    const updatedParams = { ...req?.params };
-    delete updatedParams?.page;
-    delete updatedParams?.limit;
-    delete updatedParams?.pageNo;
-    req.params = updatedParams;
-  }
+  // if (!req?.url.includes("/list")) {
+  //   const updatedParams = { ...req?.params };
+  //   delete updatedParams?.page;
+  //   delete updatedParams?.limit;
+  //   delete updatedParams?.pageNo;
+  //   req.params = updatedParams;
+  // }
 
   // todo : move inside interceptor
   req.headers.Authorization = `Bearer ${token}`;
@@ -37,19 +40,22 @@ Axios.interceptors.request.use(async (req: any) => {
   return req;
 });
 
-// Axios.interceptors.response.use(
-//   res => { console.log({res});return res;},
-//   err => {
-//     console.log({err}, );
+Axios.interceptors.response.use(
+  (res) => {
+    // console.log({ res });
+    return res;
+  },
+  (err) => {
+    // console.log({ err });
 
-//     if (err?.response?.status === 401 || err?.response?.status === 403) {
+    if (err?.response?.status === 401 || err?.response?.status === 403) {
+      store.dispatch(logout());
+      Navigate({ to: "/" });
+    } else {
+    }
 
-//     }else{
-
-//     }
-
-//     return Promise.reject(err);
-//   },
-// );
+    return Promise.reject(err);
+  }
+);
 
 export default Axios;

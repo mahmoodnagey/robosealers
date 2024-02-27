@@ -7,19 +7,25 @@ import rolesList from "../src/roles/slice/rolesListSlice";
 import showRoleModal from "../src/roles/slice/show-role-modal-slice";
 import editRoleModal from "../src/roles/slice/edit-role-modal-slice";
 import adminList from "../src/admin/slice/adminsListSlice";
+import orgsList from "../src/orgnization/slice/org-slice";
 import editAdminModal from "../src/admin/slice/edit-admin-modal-slice";
+import userReducers from "../src/users/slice/user-slice";
+import robotReducers from "../src/robots/slice/robot-slice";
 
 export const store = configureStore({
   reducer: {
     menu: menuReducer,
     settingModal: settingModalReducer,
-    showRoleModal: showRoleModal,
-    editRoleModal: editRoleModal,
+    showRoleModal,
+    editRoleModal,
     user: userReducer,
     auth: authReducer,
-    rolesList: rolesList,
-    adminList: adminList,
-    editAdminModal: editAdminModal,
+    rolesList,
+    adminList,
+    editAdminModal,
+    orgsList,
+    userReducers,
+    robotReducers,
   },
 });
 

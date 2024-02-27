@@ -1,4 +1,4 @@
-import { Flex, Paper } from "@mantine/core";
+import { Box, Flex, Paper } from "@mantine/core";
 
 export type KeyValueCardProps = {
   label: string;
@@ -12,7 +12,7 @@ export default function KeyValueCard({ label, value }: KeyValueCardProps) {
           {label}
         </Paper>
         <Paper w="50%" withBorder radius={0} p="xs">
-          {value}
+          <Box>{value}</Box>
         </Paper>
       </Flex>
     </>

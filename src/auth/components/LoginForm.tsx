@@ -30,7 +30,6 @@ export default function LoginForm() {
         // successMsg: "you successfully logged in",
       }).then((res) => {
         if (res?.data.error) {
-          console.log(res);
         } else {
           const user = { ...res?.data.result, token: res?.data.token };
           if (user?.isActive) {
