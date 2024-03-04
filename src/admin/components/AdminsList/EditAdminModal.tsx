@@ -43,9 +43,17 @@ export default function EditAdminModal({ admin }: { admin: any }) {
           _id: admin._id,
         },
         body: {
-          name: values.name.trim(),
-          email: values.email.trim(),
-          permission: values.permission._id,
+          name:
+            values.name.trim() === admin.name ? undefined : values.name.trim(),
+          email:
+            values.email.trim() === admin.email
+              ? undefined
+              : values.email.trim(),
+
+          permission:
+            values.permission._id === admin.permission._id
+              ? undefined
+              : values.permission._id,
         },
       })
         .then((res) => {
@@ -88,20 +96,21 @@ export default function EditAdminModal({ admin }: { admin: any }) {
             }
           );
         });
-
-      PutService({
-        route: ApiRoutes.updateAdminRole,
-        params: {
-          _id: admin._id,
-        },
-        body: {
-          permission: values.permission._id,
-        },
-      }).then((res) => {
-        dispatch(editAdmin(res.data.result));
-        resetForm();
-        formik.setFieldValue("permission", { _id: null, name: null }); // Empty the Select input after form submission
-      });
+      values.permission._id === admin.permission._id
+        ? undefined
+        : PutService({
+            route: ApiRoutes.updateAdminRole,
+            params: {
+              _id: admin._id,
+            },
+            body: {
+              permission: values.permission._id,
+            },
+          }).then((res) => {
+            dispatch(editAdmin(res.data.result));
+            resetForm();
+            formik.setFieldValue("permission", { _id: null, name: null }); // Empty the Select input after form submission
+          });
     },
   });
 
@@ -179,7 +188,6 @@ export default function EditAdminModal({ admin }: { admin: any }) {
                   {formik.values.permission.name && (
                     <Select
                       id="permission"
-                      clearable
                       label="Role"
                       name="permission"
                       placeholder="Pick Role"

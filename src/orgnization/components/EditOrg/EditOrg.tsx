@@ -29,8 +29,10 @@ export default function EditOrg() {
     },
     onSubmit: (values: OrgFormType, { resetForm }) => {
       const updatedOrg = {
-        name: values.name.trim(),
-        email: values.email.trim(),
+        name:
+          values?.name?.trim() === org.name ? undefined : values.name?.trim(),
+        email:
+          values.email?.trim() === org.email ? undefined : values.email?.trim(),
       };
       editOrg(updatedOrg, org._id, resetForm);
     },
@@ -74,7 +76,6 @@ export default function EditOrg() {
               <Flex justify="center">
                 <Flex w="90%" direction="column" gap="md" mb="xl">
                   <TextInput
-                    required
                     label="Organization Name"
                     placeholder="Organization Name"
                     name="name"
@@ -83,7 +84,6 @@ export default function EditOrg() {
                     value={formik.values.name}
                   />
                   <TextInput
-                    required
                     label="Email"
                     placeholder="Email"
                     name="email"

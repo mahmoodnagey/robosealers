@@ -21,6 +21,7 @@ import { IconX } from "@tabler/icons-react";
 import { editRole } from "../../slice/rolesListSlice";
 import { closeEditRoleModal } from "../../slice/edit-role-modal-slice";
 import { RoleType } from "../../types";
+import { objectsAreEqual } from "../../../design-system/utils";
 
 export default function EditRole({ role }: { role: RoleType }) {
   const [adminPermissionList, setAdminPermissionList] = useState<any>({});
@@ -40,7 +41,10 @@ export default function EditRole({ role }: { role: RoleType }) {
 
   useEffect(() => {
     GetService({
-      route: ApiRoutes.listAdminPermissions,
+      route:
+        role.type === "admin"
+          ? ApiRoutes.listAdminPermissions
+          : ApiRoutes.listUserPermissions,
     }).then((res) => {
       setAdminPermissionList(res.data.result);
     });
@@ -70,6 +74,8 @@ export default function EditRole({ role }: { role: RoleType }) {
         result[key].push(path);
       }
     });
+    const isValuesEqual = objectsAreEqual(role?.permissions, result);
+    console.log(isValuesEqual);
 
     PutService({
       route: ApiRoutes.updateRoles,
@@ -77,9 +83,10 @@ export default function EditRole({ role }: { role: RoleType }) {
         _id: role._id,
       },
       body: {
-        name: roleNameValue.trim(),
-        permissions: result,
-        type: "admin",
+        name:
+          roleNameValue.trim() === role.name ? undefined : roleNameValue.trim(),
+        permissions: isValuesEqual ? undefined : result,
+        type: role.type === "admin" ? "admin" : "user",
       },
     })
       .then((res) => {
@@ -149,7 +156,6 @@ export default function EditRole({ role }: { role: RoleType }) {
                 placeholder="Enter Role Name"
                 defaultValue={roleNameValue}
                 onChange={(e) => setRoleNameValue(e.target.value)}
-                required
                 my="md"
               />
               {Object.entries(adminPermissionList).map(
