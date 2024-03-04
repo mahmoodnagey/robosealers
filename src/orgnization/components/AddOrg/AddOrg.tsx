@@ -14,8 +14,8 @@ export default function AddOrg() {
     },
     onSubmit: (values: OrgFormType, { resetForm }) => {
       const org = {
-        name: values.name.trim(),
-        email: values.email.trim(),
+        name: values.name?.trim(),
+        email: values.email?.trim(),
         password: values.password,
       };
       addOrg(org, resetForm);
