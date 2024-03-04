@@ -38,8 +38,9 @@ export default function EditRobot() {
     },
     onSubmit: (values: RobotFormType, { resetForm }) => {
       const updatedRobot = {
-        name: values.name.trim(),
-        org: values.org._id,
+        name:
+          values.name.trim() === robot?.name ? undefined : values.name.trim(),
+        org: values.org._id === robot?.org?._id ? undefined : values.org._id,
       };
       editRobot(updatedRobot, robot?._id, resetForm);
     },
@@ -91,7 +92,6 @@ export default function EditRobot() {
               <Flex justify="center">
                 <Flex w="95%" direction="column" gap="md" mb="xl">
                   <TextInput
-                    required
                     label="User Name"
                     placeholder="User Name"
                     name="name"
@@ -103,8 +103,6 @@ export default function EditRobot() {
                   {formik.values.org.name && (
                     <Select
                       id="org"
-                      required
-                      clearable
                       label="Organization"
                       name="org"
                       placeholder="Pick Role"

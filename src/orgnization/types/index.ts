@@ -11,7 +11,7 @@ export interface OrganizationType {
   __v?: number;
 }
 export interface OrgFormType {
-  name: string;
-  email: string;
+  name: string | undefined;
+  email: string | undefined;
   password?: string;
 }

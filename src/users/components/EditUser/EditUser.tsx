@@ -23,6 +23,7 @@ import { fetchOrgsList } from "../../../orgnization/slice/thunk";
 import { GetService } from "../../../api/services/requests-service";
 import ApiRoutes from "../../../api/services/api-routes";
 import { fetchRobotsList } from "../../../robots/slice/thunk";
+import { arraysAreEqual } from "../../../design-system/utils";
 
 export default function EditUser() {
   const dispatch: any = useDispatch();
@@ -54,13 +55,22 @@ export default function EditUser() {
       },
     },
     onSubmit: (values: UserFormType, { resetForm }) => {
+      const isArrayEqual = arraysAreEqual(
+        values?.robots?._id as [],
+        user?.robots.map((item: { _id: any }) => item._id)
+      );
+
       const updatedUser = {
         name:
           values.name.trim() === user?.name ? undefined : values.name.trim(),
-        email: values.email.trim(),
-        permission: values.permission._id,
-        org: values.org._id,
-        robots: values.robots?._id,
+        email:
+          values.email.trim() === user?.email ? undefined : values.email.trim(),
+        permission:
+          values.permission._id === user?.permission?._id
+            ? undefined
+            : values.permission._id,
+        org: values.org._id === user?.org._id ? undefined : values.org._id,
+        robots: isArrayEqual ? undefined : values.robots?._id,
       };
       editUser(updatedUser, user?._id, resetForm);
     },
@@ -85,6 +95,7 @@ export default function EditUser() {
           name: user.robots?.map((robot: any) => robot.name) || [],
         },
       });
+      dispatch(fetchRobotsList(user?.org?._id as string));
     }
   }, [user]);
 
@@ -130,7 +141,6 @@ export default function EditUser() {
               <Flex justify="center">
                 <Flex w="95%" direction="column" gap="md" mb="xl">
                   <TextInput
-                    required
                     label="User Name"
                     placeholder="User Name"
                     name="name"
@@ -139,7 +149,6 @@ export default function EditUser() {
                     defaultValue={formik.values.name}
                   />
                   <TextInput
-                    required
                     label="Email"
                     placeholder="Email"
                     name="email"
@@ -151,8 +160,6 @@ export default function EditUser() {
                   {formik.values.org.name && (
                     <Select
                       id="org"
-                      required
-                      clearable
                       label="Organization"
                       name="org"
                       placeholder="Pick Role"
@@ -200,8 +207,6 @@ export default function EditUser() {
                   {formik.values.permission.name && (
                     <Select
                       id="permission"
-                      required
-                      clearable
                       label="Role"
                       name="permission"
                       placeholder="Pick Role"
