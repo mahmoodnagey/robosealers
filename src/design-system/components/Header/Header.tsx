@@ -61,7 +61,7 @@ export default function Header() {
                     text: "Are you sure you want to log out?",
                     onConfirm: () => {
                       dispatch(logout());
-                      navigate("/");
+                      navigate("/login");
                     },
                   });
                 }}
@@ -123,7 +123,7 @@ export default function Header() {
                     dispatch(logout());
                     dispatch(close());
 
-                    navigate("/");
+                    navigate("/login");
                   },
                 });
               }}
